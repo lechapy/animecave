@@ -12,6 +12,7 @@ import AnimeList   from './pages/AnimeList';
 import AnimeDetail from './pages/AnimeDetail';
 import AboutAPI    from './pages/AboutAPI';
 import AboutTeam   from './pages/AboutTeam';
+import Anexas      from './pages/Anexas';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           {/* otras páginas */}
           <Route path="api-info" element={<AboutAPI />} />
           <Route path="equipo" element={<AboutTeam />} />
+          <Route path="anexas" element={<Anexas />} />
 
           {/* cualquier ruta inválida vuelve a "/" */}
           <Route path="*" element={<Navigate to="/" replace />} />

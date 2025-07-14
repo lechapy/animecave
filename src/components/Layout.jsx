@@ -1,6 +1,6 @@
 // src/components/Layout.jsx
 import { NavLink, Outlet } from 'react-router-dom';
-import { useScrollToTop } from '../hooks/useScrollToTop'; // Importa el hook aquí
+import { useScrollToTop } from '../hooks/useScrollToTop';
 
 // --- Importaciones de Material-UI ---
 import {
@@ -8,7 +8,7 @@ import {
   Toolbar,
   Button,
   Box,
-  CssBaseline, // Para aplicar estilos base consistentes
+  CssBaseline,
   createTheme,
   ThemeProvider,
 } from '@mui/material';
@@ -16,81 +16,89 @@ import {
 // --- Definición del tema personalizado de Material-UI ---
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark', // Modo oscuro
+    mode: 'dark',
     primary: {
-      main: '#ff4081', // Tu rosa vibrante para el color primario
+      main: '#ff4081',
     },
     secondary: {
-      main: '#4fc3f7', // Un azul claro si lo necesitas para enlaces, etc.
+      main: '#4fc3f7',
     },
     background: {
-      default: '#000000', // Fondo negro puro para la página
-      paper: '#1a1a1a', // Fondo para tarjetas, dialogos, etc. (un gris muy oscuro)
+      default: '#000000',
+      paper: '#1a1a1a',
     },
     text: {
-      primary: '#f0f0f0', // Texto principal blanco/gris claro
-      secondary: '#aaa', // Texto secundario
+      primary: '#f0f0f0',
+      secondary: '#aaa',
     },
   },
   typography: {
-    fontFamily: 'Segoe UI, sans-serif', // Tu fuente preferida
+    fontFamily: 'Segoe UI, sans-serif',
     h1: {
-      fontSize: '3.5rem', // Ajusta según el tamaño de tu h1 en Home
+      fontSize: '3.5rem',
       fontWeight: 'bold',
     },
     h2: {
       fontSize: '2.5rem',
       fontWeight: 'bold',
     },
-    // Puedes definir más variantes de tipografía aquí
   },
   components: {
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#000000', // Fondo negro puro para el AppBar
-          boxShadow: '0 4px 10px rgba(0,0,0,0.5)', // Sombra para el AppBar
+          backgroundColor: '#000000',
+          boxShadow: '0 4px 10px rgba(0,0,0,0.5)',
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '8px', // Bordes redondeados para todos los botones
+          borderRadius: '8px',
           fontWeight: 'bold',
           whiteSpace: 'nowrap',
-          padding: '10px 20px', // Padding base para los botones
+          padding: '10px 20px',
         },
       },
     },
-    // Puedes añadir overrides para otros componentes aquí, por ejemplo para los selects y inputs
     MuiSelect: {
       styleOverrides: {
         root: {
           borderRadius: '6px',
-          border: '2px solid #ff4081', // Borde rosa para selects
           backgroundColor: '#1a1a1a',
           color: '#f0f0f0',
+          // Estilos para el borde del Select y cómo interactúa
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'transparent', // Oculta el borde por defecto de MUI
+            borderColor: '#ff4081', // Borde rosa por defecto
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#ff4081', // Borde rosa en hover
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: '#ff4081', // Borde rosa al enfocar
           },
+          // Para el icono de la flecha del select
+          '& .MuiSvgIcon-root': {
+            color: '#ff4081', // Color rosa para la flecha
+          },
         },
       },
     },
-    MuiInputBase: { // Para el input de texto y selects, si lo vas a usar
-        styleOverrides: {
-            input: {
-                color: '#f0f0f0', // Color del texto del input
-            },
+    MuiInputBase: {
+      // Estilos para la base de todos los inputs (incluye TextField y Select)
+      styleOverrides: {
+        input: {
+          color: '#f0f0f0', // Color del texto del input
         },
+      },
     },
-    MuiOutlinedInput: { // Para los bordes del input de texto y selects
+    MuiOutlinedInput: {
+      // Estilos para los TextField con variant="outlined"
       styleOverrides: {
         root: {
           borderRadius: '6px',
+          // Estilos para el borde del Outlined Input
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: '#ff4081', // Borde rosa por defecto
           },
@@ -114,15 +122,16 @@ export default function Layout() {
     { to: '/animes', label: 'Animes' },
     { to: '/api-info', label: 'Sobre la API' },
     { to: '/equipo', label: 'Nuestro equipo' },
+    { to: '/anexas', label: 'Páginas Anexas' },
   ];
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <CssBaseline /> {/* Aplica estilos base CSS reseteados */}
+      <CssBaseline />
       <Box
         sx={{
-          backgroundColor: 'background.default', // Usa el color de fondo definido en el tema
-          color: 'text.primary', // Usa el color de texto principal definido en el tema
+          backgroundColor: 'background.default',
+          color: 'text.primary',
           width: '100vw',
           minHeight: '100vh',
           overflowX: 'hidden',
@@ -133,19 +142,19 @@ export default function Layout() {
         <AppBar position="sticky">
           <Toolbar
             sx={{
-              justifyContent: 'center', // Centrar los botones en la barra
-              gap: '25px', // Espacio entre los botones
+              justifyContent: 'center',
+              gap: '25px',
             }}
           >
             <Button
-              component={NavLink} // Usar NavLink de react-router-dom
+              component={NavLink}
               to="/"
               sx={{
                 '&.active': {
-                  backgroundColor: 'primary.main', // Color primario del tema
+                  backgroundColor: 'primary.main',
                   color: 'white',
                 },
-                color: 'text.primary', // Color del texto del botón inactivo
+                color: 'text.primary',
               }}
             >
               Inicio
@@ -163,7 +172,7 @@ export default function Layout() {
                   color: 'text.primary',
                 }}
               >
-                {label}
+                  {label}
               </Button>
             ))}
           </Toolbar>
@@ -173,8 +182,7 @@ export default function Layout() {
           component="main"
           sx={{
             flexGrow: 1,
-            backgroundColor: 'background.default', // Usaremos el fondo general,
-                                                 // y cada página definirá su propio contraste
+            backgroundColor: 'background.default',
           }}
         >
           <Outlet />
