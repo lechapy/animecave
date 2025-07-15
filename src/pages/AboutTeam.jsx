@@ -12,26 +12,26 @@ const teamMembers = [
   {
     id: 1,
     name: 'Ricardo Loyola',
-    role: 'Diseño y Código',
-    avatar: '/placeholder-avatar.png', // Asegúrate de que esta imagen exista en tu carpeta public/
+    role: 'Diseño (Figma) y Código',
+    avatar: '/richi.jpg', // Asegúrate de que esta imagen exista en tu carpeta public/
   },
   {
     id: 2,
     name: 'Mauricio Henriquez',
-    role: 'Descripcion de rol',
-    avatar: '/placeholder-avatar.png',
+    role: 'Diseño (FIGMA) y Presentación',
+    avatar: '/mauri.jpeg',
   },
   {
     id: 3,
     name: 'Jose Alvarez',
-    role: 'Descripcion de rol',
-    avatar: '/placeholder-avatar.png',
+    role: 'Diseño (FIGMA) y Presentación',
+    avatar: '/jose.jpeg',
   },
   {
     id: 4,
     name: 'Sebastian Quinzacaras',
-    role: 'Código',
-    avatar: '/placeholder-avatar.png',
+    role: 'Prototipos y Código',
+    avatar: '/seba.jpeg',
   },
 ];
 
@@ -79,9 +79,7 @@ function AboutTeam() {
           color: 'text.secondary', // Color de texto secundario del tema
         }}
       >
-        Este proyecto fue desarrollado por Sebastián como parte de un desafío
-        técnico y creativo. El objetivo fue construir una aplicación web
-        interactiva usando React y la API pública de Jikan.
+        Este proyecto fue desarrollado por los siguientes estudiantes como parte de un desafio:
       </Typography>
 
       {/* Contenedor de los miembros del equipo usando Grid */}
