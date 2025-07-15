@@ -1,20 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-// --- Importaciones de Material-UI ---
 import {
   Box,
   Typography,
   CircularProgress,
   Grid,
-  useTheme, // Para acceder al tema
+  useTheme,
 } from '@mui/material';
 
 function AnimeDetail() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
   const [error, setError] = useState(null);
-  const theme = useTheme(); // Acceder al tema
+  const theme = useTheme();
 
   useEffect(() => {
     setAnime(null);
@@ -40,21 +38,20 @@ function AnimeDetail() {
       });
   }, [id]);
 
-  // Manejo de estado de carga y error con componentes MUI
   if (error) {
     return (
       <Box
         sx={{
           backgroundColor: 'background.default',
-          color: 'error.main', // Color de error del tema
-          minHeight: 'auto', // Ajustado a auto
-          padding: '40px', // Padding general
+          color: 'error.main',
+          minHeight: 'auto',
+          padding: '40px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: '1.5rem', // Usar 'rem'
+          fontSize: '1.5rem',
           fontFamily: theme.typography.fontFamily,
-          height: 'calc(100vh - 64px)', // Ocupa el resto de la pantalla, resta la altura de la AppBar
+          height: 'calc(100vh - 64px)',
         }}
       >
         <Typography variant="h5" component="p" sx={{ color: 'error.main' }}>
@@ -70,14 +67,14 @@ function AnimeDetail() {
         sx={{
           backgroundColor: 'background.default',
           color: 'text.primary',
-          minHeight: 'auto', // Ajustado a auto
+          minHeight: 'auto',
           padding: '40px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: '1.5rem', // Usar 'rem'
+          fontSize: '1.5rem',
           fontFamily: theme.typography.fontFamily,
-          height: 'calc(100vh - 64px)', // Ocupa el resto de la pantalla, resta la altura de la AppBar
+          height: 'calc(100vh - 64px)',
         }}
       >
         <CircularProgress sx={{ color: 'primary.main', mr: 2 }} />
@@ -93,7 +90,7 @@ function AnimeDetail() {
       sx={{
         backgroundColor: 'background.default',
         color: 'text.primary',
-        minHeight: 'auto', // Asegura que la altura se ajuste al contenido
+        minHeight: 'auto',
         padding: '60px 20px',
         paddingBottom: '60px',
         fontFamily: theme.typography.fontFamily,
@@ -105,11 +102,11 @@ function AnimeDetail() {
       }}
     >
       <Typography
-        variant="h1" // Utiliza la variante h1 del tema (o define una específica)
+        variant="h1"
         component="h1"
         sx={{
           color: 'primary.main',
-          fontSize: '3.8rem', // Usar 'rem'
+          fontSize: '3.8rem',
           fontWeight: 'bold',
           marginBottom: '30px',
           maxWidth: '90%',
@@ -129,35 +126,34 @@ function AnimeDetail() {
           borderRadius: '12px',
           margin: '30px 0',
           boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
-          border: `3px solid ${theme.palette.primary.main}`, // Usa el color primario del tema
+          border: `3px solid ${theme.palette.primary.main}`,
           objectFit: 'cover',
-          height: 'auto', // Mantenemos auto si quieres proporción natural
+          height: 'auto',
         }}
       />
 
       <Typography
-        variant="body1" // Variantes de tipografía para párrafos
+        variant="body1"
         component="p"
         sx={{
           maxWidth: '900px',
           margin: '20px auto 40px auto',
-          fontSize: '1.1rem', // Usar 'rem'
+          fontSize: '1.1rem',
           lineHeight: '1.7',
-          color: 'text.secondary', // Color secundario del texto
+          color: 'text.secondary',
           textAlign: 'left',
         }}
       >
         <strong>Sinopsis:</strong> {anime.synopsis || 'Sinopsis no disponible.'}
       </Typography>
 
-      {/* Contenedor para detalles usando Grid */}
       <Grid
         container
-        spacing={2} // Espacio entre los items del grid (16px por defecto si spacing=2)
+        spacing={2}
         sx={{
           maxWidth: '900px',
           width: '100%',
-          margin: '0 auto 40px auto', // Centrar y más espacio inferior
+          margin: '0 auto 40px auto',
           textAlign: 'left',
           padding: '0 20px',
         }}
@@ -218,7 +214,6 @@ function AnimeDetail() {
         {anime.genres && anime.genres.length > 0 && (
           <Grid item xs={12}>
             {' '}
-            {/* Ocupa todo el ancho */}
             <Typography variant="body1">
               <Typography component="strong" sx={{ color: 'primary.main' }}>
                 Géneros:
@@ -262,11 +257,11 @@ function AnimeDetail() {
           }}
         >
           <Typography
-            variant="h2" // Usar variante h2 del tema
+            variant="h2"
             component="h2"
             sx={{
               color: 'primary.main',
-              fontSize: '2.5rem', // Usar 'rem'
+              fontSize: '2.5rem',
               marginBottom: '20px',
             }}
           >
@@ -281,11 +276,11 @@ function AnimeDetail() {
               borderRadius: '12px',
               overflow: 'hidden',
               boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
-              border: `3px solid ${theme.palette.primary.main}`, // Usa el color primario del tema
+              border: `3px solid ${theme.palette.primary.main}`,
             }}
           >
             <Box
-              component="iframe" // Usar Box como iframe
+              component="iframe"
               src={anime.trailer.embed_url}
               title={`${anime.title} Trailer`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

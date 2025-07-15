@@ -1,31 +1,24 @@
 import { useState } from 'react';
-
-// --- Importaciones de Material-UI ---
 import {
   Box,
   Typography,
-  Link, // Para enlaces
+  Link,
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  useTheme, // Para acceder al tema
+  useTheme,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'; // Icono para el acordeón
-
-// El componente AccordionItem personalizado será reemplazado por los componentes nativos de MUI
-// Por lo tanto, no necesitamos este componente auxiliar ya:
-// function AccordionItem(...) { ... }
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function AboutAPI() {
-  const theme = useTheme(); // Acceder al tema
+  const theme = useTheme();
 
   return (
     <Box
       sx={{
-        backgroundColor: 'background.default', // Fondo negro del tema
-        color: 'text.primary', // Color general de texto del tema
-        minHeight: 'auto', // La altura se ajusta al contenido
+        backgroundColor: 'background.default',
+        color: 'text.primary',
+        minHeight: 'auto',
         padding: '60px 20px',
         paddingBottom: '60px',
         fontFamily: theme.typography.fontFamily,
@@ -38,11 +31,11 @@ function AboutAPI() {
       }}
     >
       <Typography
-        variant="h1" // Usa la variante h1 del tema
+        variant="h1"
         component="h1"
         sx={{
-          color: 'primary.main', // Color rosa del tema
-          fontSize: '3.5rem', // Usar 'rem'
+          color: 'primary.main',
+          fontSize: '3.5rem',
           fontWeight: 'bold',
           marginBottom: '40px',
         }}
@@ -55,7 +48,7 @@ function AboutAPI() {
           maxWidth: '800px',
           textAlign: 'left',
           lineHeight: '1.7',
-          color: 'text.secondary', // Un gris más claro para el texto de contenido
+          color: 'text.secondary',
           marginBottom: '40px',
         }}
       >
@@ -79,7 +72,7 @@ function AboutAPI() {
             target="_blank"
             rel="noreferrer"
             sx={{
-              color: 'secondary.main', // Usa el color azul del tema
+              color: 'secondary.main',
               textDecoration: 'none',
               '&:hover': {
                 textDecoration: 'underline',
@@ -101,12 +94,11 @@ function AboutAPI() {
           height: 'auto',
           borderRadius: '8px',
           boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
-          border: `3px solid ${theme.palette.primary.main}`, // Borde rosa
+          border: `3px solid ${theme.palette.primary.main}`,
           marginBottom: '60px',
         }}
       />
 
-      {/* Secciones Expandibles (Acordeón) con componentes de Material-UI */}
       <Box
         sx={{
           width: '100%',
@@ -117,35 +109,35 @@ function AboutAPI() {
         <Accordion
           sx={{
             marginBottom: '10px',
-            backgroundColor: 'background.paper', // Fondo más claro para el acordeón
+            backgroundColor: 'background.paper',
             borderRadius: '8px',
-            border: '1px solid #333', // Borde sutil
+            border: '1px solid #333',
             boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-            '&.Mui-expanded': { // Estilos cuando el acordeón está expandido
-              border: `1px solid ${theme.palette.primary.main}`, // Borde rosa al expandir
+            '&.Mui-expanded': {
+              border: `1px solid ${theme.palette.primary.main}`,
               boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
             },
-            '&:before': { // Elimina la línea divisoria por defecto de MUI
-                display: 'none',
-            }
+            '&:before': {
+              display: 'none',
+            },
           }}
         >
           <AccordionSummary
             expandIcon={
               <ExpandMoreIcon sx={{ color: 'primary.main', fontSize: '2rem' }} />
-            } // Icono de expansión
+            }
             aria-controls="panel1a-content"
             id="panel1a-header"
             sx={{
-              backgroundColor: 'background.paper', // Fondo del "botón" del acordeón
+              backgroundColor: 'background.paper',
               color: 'text.primary',
-              fontSize: '1.2rem', // Usar 'rem'
+              fontSize: '1.2rem',
               fontWeight: 'bold',
-              borderBottom: `1px solid ${theme.palette.divider}`, // Línea divisoria suave
+              borderBottom: `1px solid ${theme.palette.divider}`,
               '&.Mui-expanded': {
-                borderBottom: `1px solid ${theme.palette.primary.main}`, // Borde inferior rosa al expandir
+                borderBottom: `1px solid ${theme.palette.primary.main}`,
               },
-              minHeight: '48px !important', // Asegura una altura mínima consistente
+              minHeight: '48px !important',
             }}
           >
             <Typography variant="h6" component="span" sx={{ fontSize: '1.2rem' }}>
@@ -153,28 +145,43 @@ function AboutAPI() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: '1.6' }}>
+            <Typography
+              variant="body1"
+              sx={{ color: 'text.secondary', lineHeight: '1.6' }}
+            >
               Jikan API proporciona un amplio conjunto de datos de MyAnimeList,
               incluyendo:
               <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Información de Animes:</Typography> Títulos, sinopsis, imágenes, puntuaciones, episodios, géneros, estudios, etc.
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Información de Animes:
+                    </Typography>{' '}
+                    Títulos, sinopsis, imágenes, puntuaciones, episodios,
+                    géneros, estudios, etc.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Información de Mangas:</Typography> Títulos, sinopsis, imágenes, volúmenes, géneros, autores, etc.
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Información de Mangas:
+                    </Typography>{' '}
+                    Títulos, sinopsis, imágenes, volúmenes, géneros, autores,
+                    etc.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Personajes y Staff.</Typography>
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Personajes y Staff.
+                    </Typography>
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Noticias, foros y estadísticas.</Typography>
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Noticias, foros y estadísticas.
+                    </Typography>
                   </Typography>
                 </li>
               </ul>
@@ -193,9 +200,9 @@ function AboutAPI() {
               border: `1px solid ${theme.palette.primary.main}`,
               boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
             },
-             '&:before': {
-                display: 'none',
-            }
+            '&:before': {
+              display: 'none',
+            },
           }}
         >
           <AccordionSummary
@@ -221,27 +228,46 @@ function AboutAPI() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: '1.6' }}>
+            <Typography
+              variant="body1"
+              sx={{ color: 'text.secondary', lineHeight: '1.6' }}
+            >
               Elegimos Jikan API por varias razones clave:
               <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Acceso Gratuito:</Typography> Es una API pública y gratuita, ideal para proyectos educativos y de hobby.
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Acceso Gratuito:
+                    </Typography>{' '}
+                    Es una API pública y gratuita, ideal para proyectos
+                    educativos y de hobby.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Riqueza de Datos:</Typography> Ofrece una vasta cantidad de información actualizada directamente de MyAnimeList.
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Riqueza de Datos:
+                    </Typography>{' '}
+                    Ofrece una vasta cantidad de información actualizada
+                    directamente de MyAnimeList.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Facilidad de Uso:</Typography> Su documentación es clara y fácil de entender, lo que agiliza el desarrollo.
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Facilidad de Uso:
+                    </Typography>{' '}
+                    Su documentación es clara y fácil de entender, lo que
+                    agiliza el desarrollo.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Comunidad Activa:</Typography> Cuenta con una comunidad de desarrolladores activa que contribuye a su mejora continua.
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Comunidad Activa:
+                    </Typography>{' '}
+                    Cuenta con una comunidad de desarrolladores activa que
+                    contribuye a su mejora continua.
                   </Typography>
                 </li>
               </ul>
@@ -260,9 +286,9 @@ function AboutAPI() {
               border: `1px solid ${theme.palette.primary.main}`,
               boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
             },
-             '&:before': {
-                display: 'none',
-            }
+            '&:before': {
+              display: 'none',
+            },
           }}
         >
           <AccordionSummary
@@ -288,28 +314,46 @@ function AboutAPI() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: '1.6' }}>
+            <Typography
+              variant="body1"
+              sx={{ color: 'text.secondary', lineHeight: '1.6' }}
+            >
               Para desarrolladores interesados, Jikan API es una API RESTful que
               responde en formato JSON.
               <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Rate Limits:</Typography> Es importante respetar los límites de solicitudes para no ser bloqueado (generalmente 30 solicitudes/minuto).
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Rate Limits:
+                    </Typography>{' '}
+                    Es importante respetar los límites de solicitudes para no ser
+                    bloqueado (generalmente 30 solicitudes/minuto).
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Versión V4:</Typography> Estamos utilizando la versión 4, que es la más reciente y estable.
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Versión V4:
+                    </Typography>{' '}
+                    Estamos utilizando la versión 4, que es la más reciente y
+                    estable.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" component="span">
-                    <Typography component="strong" sx={{ color: 'primary.main' }}>Documentación:</Typography> Puedes encontrar la documentación completa en{' '}
+                    <Typography component="strong" sx={{ color: 'primary.main' }}>
+                      Documentación:
+                    </Typography>{' '}
+                    Puedes encontrar la documentación completa en{' '}
                     <Link
                       href="https://docs.api.jikan.moe/"
                       target="_blank"
                       rel="noreferrer"
-                      sx={{ color: 'secondary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                      sx={{
+                        color: 'secondary.main',
+                        textDecoration: 'none',
+                        '&:hover': { textDecoration: 'underline' },
+                      }}
                     >
                       docs.api.jikan.moe
                     </Link>

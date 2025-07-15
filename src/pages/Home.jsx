@@ -1,64 +1,60 @@
 import { useNavigate } from 'react-router-dom';
-
-// --- Importaciones de Material-UI ---
 import { Box, Typography, useTheme } from '@mui/material';
 
 function Home() {
-  const theme = useTheme(); // Acceder al tema para colores personalizados si es necesario
+  const theme = useTheme();
 
   return (
     <Box
       sx={{
-        backgroundColor: 'background.default', // Usa el color de fondo definido en el tema
-        color: 'text.primary', // Usa el color de texto principal definido en el tema
+        backgroundColor: 'background.default',
+        color: 'text.primary',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        fontFamily: theme.typography.fontFamily, // Usa la fuente definida en el tema
+        fontFamily: theme.typography.fontFamily,
         padding: '20px',
         boxSizing: 'border-box',
       }}
     >
-      {/* La imagen es un elemento HTML estándar ya que MUI no tiene un componente de imagen directo
-          para fines generales como esta. Se estiliza con 'sx'. */}
       <img
         src="/logo.png"
         alt="Logo Anime Cave"
-        style={{ // Mantengo 'style' aquí por simplicidad al usar props como 'src' que no están en 'sx'
+        style={{
           width: '280px',
           height: '280px',
           borderRadius: '50%',
-          border: `6px solid ${theme.palette.primary.main}`, // Usa el color primario del tema
+          border: `6px solid ${theme.palette.primary.main}`,
           objectFit: 'cover',
           marginBottom: '40px',
           boxShadow: '0 12px 30px rgba(0,0,0,0.7)',
         }}
       />
       <Typography
-        variant="h1" // Usa la variante h1 de tipografía definida en el tema
-        component="h1" // Renderiza como un h1 HTML semánticamente
+        variant="h1"
+        component="h1"
         sx={{
-          color: 'primary.main', // Usa el color primario del tema
-          fontSize: '5.5em', // Sobrescribe el tamaño si es muy específico para esta página
-          fontWeight: 'bold', // Asegura negrita, aunque ya esté en h1 theme
+          color: 'primary.main',
+          fontSize: '5.5em',
+          fontWeight: 'bold',
           marginBottom: '15px',
           letterSpacing: '3px',
-          textShadow: `0 0 15px ${theme.palette.primary.main}4D`, // Usar el color primario del tema con opacidad
+          textShadow: `0 0 15px ${theme.palette.primary.main}4D`,
         }}
       >
         Anime Cave
       </Typography>
       <Typography
-        variant="body1" // Usa una variante de texto estándar de MUI
-        component="p" // Renderiza como un p HTML semánticamente
+        variant="body1"
+        component="p"
         sx={{
           fontSize: '1.5em',
           maxWidth: '700px',
           lineHeight: '1.7',
-          color: 'text.secondary', // O un color de texto más claro si lo prefieres: 'text.primary'
+          color: 'text.secondary',
         }}
       >
         Explora y encuentra tu próximo anime favorito desde la comodidad de tu

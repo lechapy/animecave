@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDebounce } from '../hooks/useDebounce'; // Importar el hook de debounce
-
-// --- Importaciones de Material-UI ---
+import { useDebounce } from '../hooks/useDebounce';
 import {
   Box,
   Typography,
@@ -27,9 +25,7 @@ function AnimeList() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [hasSearched, setHasSearched] = useState(false);
-
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('');
   const [selectedType, setSelectedType] = useState('');
@@ -38,11 +34,8 @@ function AnimeList() {
   const theme = useTheme();
 
   const animeTypes = ['tv', 'movie', 'ova', 'special', 'ona', 'music'];
-
-  // Valor de búsqueda con debounce (0.5 segundos de retraso)
   const debouncedQuery = useDebounce(query, 500);
 
-  // Cargar géneros al montar el componente
   useEffect(() => {
     const fetchGenres = async () => {
       try {
@@ -58,23 +51,21 @@ function AnimeList() {
     fetchGenres();
   }, []);
 
-  // Nuevo useEffect para disparar la búsqueda cuando debouncedQuery o los filtros cambien
   useEffect(() => {
-    // Solo dispara la búsqueda si debouncedQuery es diferente de vacío O hay filtros seleccionados
-    // Y no es la carga inicial de los filtros.
-    // Evitamos buscar si todos los campos están vacíos para no mostrar todos los animes al inicio.
     if (debouncedQuery !== '' || selectedGenre !== '' || selectedType !== '') {
-      searchAnimeAutomatically(); // Llama a la función de búsqueda
-    } else if (debouncedQuery === '' && selectedGenre === '' && selectedType === '') {
-      // Si todos los campos están vacíos, limpiar resultados y volver al estado inicial
+      searchAnimeAutomatically();
+    } else if (
+      debouncedQuery === '' &&
+      selectedGenre === '' &&
+      selectedType === ''
+    ) {
       setResults([]);
       setError(null);
       setHasSearched(false);
-      setLoading(false); // Asegurarse de que no esté en estado de carga
+      setLoading(false);
     }
-  }, [debouncedQuery, selectedGenre, selectedType]); // Dependencias: el valor debounced y los filtros
+  }, [debouncedQuery, selectedGenre, selectedType]);
 
-  // Función de búsqueda, ahora llamada automáticamente o por el botón de "Aplicar Filtros"
   const searchAnimeAutomatically = async () => {
     setLoading(true);
     setError(null);
@@ -82,7 +73,7 @@ function AnimeList() {
 
     let apiUrl = `https://api.jikan.moe/v4/anime?limit=24`;
 
-    if (debouncedQuery) { // Usamos debouncedQuery aquí
+    if (debouncedQuery) {
       apiUrl += `&q=${debouncedQuery}`;
     }
     if (selectedGenre) {
@@ -120,7 +111,6 @@ function AnimeList() {
     setResults([]);
     setError(null);
     setHasSearched(false);
-    // No disparamos la búsqueda aquí, ya el useEffect de debouncedQuery se encargará si 'query' está vacío.
   };
 
   return (
@@ -175,9 +165,7 @@ function AnimeList() {
           marginBottom: hasSearched ? '20px' : '40px',
         }}
       >
-        {/* Barra de búsqueda principal y botón de lupa */}
         <Box
-          // Eliminamos el componente="form" y onSubmit aquí porque la búsqueda es automática
           sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -191,7 +179,7 @@ function AnimeList() {
             label="Escribe un anime..."
             variant="outlined"
             value={query}
-            onChange={(e) => setQuery(e.target.value)} // Dispara el cambio de query
+            onChange={(e) => setQuery(e.target.value)}
             InputLabelProps={{
               sx: { color: theme.palette.text.secondary },
             }}
@@ -199,9 +187,8 @@ function AnimeList() {
               marginRight: '15px',
             }}
           />
-          {/* El botón de lupa sigue siendo funcional si el usuario prefiere hacer clic explícitamente */}
           <IconButton
-            onClick={searchAnimeAutomatically} // Llama la función de búsqueda
+            onClick={searchAnimeAutomatically}
             aria-label="buscar"
             sx={{
               padding: '12px',
@@ -217,7 +204,6 @@ function AnimeList() {
           </IconButton>
         </Box>
 
-        {/* Sección de Filtros y Botones de Acción */}
         <Box
           sx={{
             display: 'flex',
@@ -228,13 +214,21 @@ function AnimeList() {
             maxWidth: '100%',
           }}
         >
-          {/* Grupo de Selects (Género y Tipo) */}
-          <Box sx={{ display: 'flex', gap: '15px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: '15px',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
+          >
             <FormControl sx={{ minWidth: 150 }}>
-              <InputLabel sx={{ color: theme.palette.text.secondary }}>Género</InputLabel>
+              <InputLabel sx={{ color: theme.palette.text.secondary }}>
+                Género
+              </InputLabel>
               <Select
                 value={selectedGenre}
-                onChange={(e) => setSelectedGenre(e.target.value)} // Los cambios en selects también disparan el useEffect
+                onChange={(e) => setSelectedGenre(e.target.value)}
                 label="Género"
               >
                 <MenuItem value="">Todos los géneros</MenuItem>
@@ -247,10 +241,12 @@ function AnimeList() {
             </FormControl>
 
             <FormControl sx={{ minWidth: 120 }}>
-              <InputLabel sx={{ color: theme.palette.text.secondary }}>Tipo</InputLabel>
+              <InputLabel sx={{ color: theme.palette.text.secondary }}>
+                Tipo
+              </InputLabel>
               <Select
                 value={selectedType}
-                onChange={(e) => setSelectedType(e.target.value)} // Los cambios en selects también disparan el useEffect
+                onChange={(e) => setSelectedType(e.target.value)}
                 label="Tipo"
               >
                 <MenuItem value="">Todos los tipos</MenuItem>
@@ -263,12 +259,17 @@ function AnimeList() {
             </FormControl>
           </Box>
 
-          {/* Grupo de Botones de Acción (Aplicar y Limpiar) */}
-          <Box sx={{ display: 'flex', gap: '15px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {/* El botón "Aplicar Filtros" ahora es más para forzar la búsqueda si se han cambiado los filtros sin escribir */}
+          <Box
+            sx={{
+              display: 'flex',
+              gap: '15px',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
+          >
             <Button
               variant="contained"
-              onClick={searchAnimeAutomatically} // Llama a la función de búsqueda automática
+              onClick={searchAnimeAutomatically}
               sx={{
                 backgroundColor: 'primary.main',
                 color: 'white',
@@ -298,7 +299,6 @@ function AnimeList() {
         </Box>
       </Box>
 
-      {/* Indicador de Carga/Error/Mensajes */}
       {loading && (
         <Box sx={{ marginTop: '30px', textAlign: 'center' }}>
           <CircularProgress sx={{ color: 'primary.main' }} />
@@ -314,13 +314,19 @@ function AnimeList() {
       )}
 
       {!loading && !error && results.length === 0 && hasSearched && (
-        <Typography variant="body1" sx={{ marginTop: '50px', color: 'text.secondary' }}>
+        <Typography
+          variant="body1"
+          sx={{ marginTop: '50px', color: 'text.secondary' }}
+        >
           No se encontraron resultados para tu búsqueda. Intenta con otros
           filtros o palabras clave.
         </Typography>
       )}
       {!loading && !error && results.length === 0 && !hasSearched && (
-        <Typography variant="body1" sx={{ marginTop: '50px', color: 'text.secondary' }}>
+        <Typography
+          variant="body1"
+          sx={{ marginTop: '50px', color: 'text.secondary' }}
+        >
           Ingresa un anime o selecciona un filtro para empezar...
         </Typography>
       )}
@@ -395,7 +401,10 @@ function AnimeList() {
                     {anime.title}
                   </Typography>
                   {anime.score && (
-                    <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '0.9em' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: 'text.secondary', fontSize: '0.9em' }}
+                    >
                       ⭐ {anime.score.toFixed(2)}
                     </Typography>
                   )}
